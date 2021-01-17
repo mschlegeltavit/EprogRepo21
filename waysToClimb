@@ -1,0 +1,17 @@
+public void waysToClimb(int n){
+    waysToClimb(n, 0, "[");
+}
+
+public void waysToClimb(int n, String res, int pos){
+    if(pos == n){
+        int x = result.lastIndexOf(",");
+        if(x!=-1){
+            res = res.substring(0,x) + "]";
+            System.out.println(result);
+        }
+    }
+    else if(n>pos){
+        waysToClimb(n, result+"1, ", pos+1);
+        waysToClimb(n, result+"2, ", pos+2);
+    }
+}
