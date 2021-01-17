@@ -1,0 +1,23 @@
+public Map<String, Integer> pairCounts(List<String> list){
+    HashMap<String, Integer> res = new HashMap<String, Integer>();
+    for(String word : list){
+        List<String> seqs = seq(word);
+        for(String s : seqs){
+            if(res.keySet().contains(s))
+                res.replace(s, res.get(s) + 1);
+            else
+                res.put(s, 1);
+        }
+    }
+    return res;
+}
+
+public List<String> seq(String x){
+    List<String> seqs = new LinkedList<String>();
+    if(x.length()<2)
+        return seqs;
+    for(int i = 0; i<x.length()-1; i++){
+        seqs.add(x.substring(i,i+2));
+    }
+    return seqs;
+}
