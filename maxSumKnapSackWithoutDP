@@ -1,0 +1,20 @@
+public int maxSum(List<Integer> list, int max){
+    return maxSum(list, list.size()-1, max, max);
+}
+
+public int maxSum(List<Integer> list, int i, int j, int max){
+    if(j==0)
+        return 0;
+    if(i == 0 && list.get(0)<=j){
+        return list.get(i);
+    }
+    else if(i <= 0)
+        return 0;
+    else{
+        int x1 = maxSum(list, i-1, j, max);
+        int x2 = 0;
+        if(j - list.get(i) >= 0)
+            x2 = list.get(i) + maxSum(list, i-1, j-list.get(i), max);
+        return Math.max(x1,x2);
+    }
+}
