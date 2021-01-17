@@ -1,0 +1,24 @@
+public void printSquares(int n){
+    printSquares(n, 0, 0, new HashSet<Integer>());
+}
+
+public void printSquares(int n, int done, int largest, HashSet<Integer> s){
+    if(done > n)
+        return;
+    else if(done == n){
+        printHelper(s);
+    }
+    else if(done + largest*largest > n)
+        return;
+    else{
+        HashSet<Integer> s1 = new HashSet<Integer>();
+        HashSet<Integer> s2 = new HashSet<Integer>();
+        s1.addAll(s);
+        s2.addAll(s);
+        
+        s1.add(largest+1);
+        int done1 = done + (int) Math.pow(largest+1,2);
+        printSquares(n, done1, largest + 1, s1);
+        printSquares(n, done, largest + 1, s2);
+    }
+}
