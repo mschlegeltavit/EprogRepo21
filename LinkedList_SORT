@@ -1,0 +1,48 @@
+public void sort(){
+    ListNode curr = front;
+    if(curr == null || curr.next == null) return;
+    int size = 0;
+    while(curr != null){
+        size++;
+        curr = curr.next;
+    }
+
+    if (size > 1) {
+            boolean wasChanged;
+            do {
+                ListNode prev = null;
+                ListNode current = front;
+                ListNode next = front.next;
+                wasChanged = false;
+                while(next != null){
+                    if(current.data > next.data){
+                        wasChanged = true;
+                        if(prev == null){
+                            ListNode sig = next.next;
+                            front = next;
+                            current.next = sig;
+                            front.next = current;
+                            
+                            prev = front;
+                            next = current.next;
+                        }
+                        else{
+                            ListNode sig = next.next;
+                            prev.next = next;
+                            next.next = current;
+                            current.next = sig;
+                            
+                            prev = next;
+                            next = sig;
+                        }      
+                    }
+                    else{
+                        prev = current;
+                        current = next;
+                        next = next.next;
+                    }
+                    
+                }
+            } while(wasChanged);
+        }
+}
